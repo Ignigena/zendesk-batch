@@ -1,0 +1,12 @@
+{
+  "name": "zendesk-batch",
+  "version": "0.0.1",
+  "author": "Albert Martin",
+  "description": "Perform batch operations on Zendesk tickets.",
+  "dependencies": {
+    "node-zendesk": "git://github.com/Ignigena/node-zendesk.git#master",
+    "underscore": "~1.6.0",
+    "prompt": "^0.2.12",
+    "q": "^1.0.1"
+  }
+}
