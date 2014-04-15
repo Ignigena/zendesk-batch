@@ -73,6 +73,25 @@ module.exports = {
     });
 
     return deferred.promise;
+  },
+
+  loadTicketsFromArray: function(tickets) {
+    var deferred = Q.defer();
+    var affectedTickets = new Array();
+
+    console.log('Please wait while ticket contents are fetched...');
+
+    client.tickets.showMany(tickets, function (err, statusList, body, responseList, resultList) {
+      if (!body) return deferred.reject(new Error('Zendesk returned no results.'));
+
+      body.forEach(function(ticket) {
+        affectedTickets.push(ticket);
+      });
+
+      deferred.resolve(affectedTickets);
+    });
+
+    return deferred.promise;
   }
 
 }

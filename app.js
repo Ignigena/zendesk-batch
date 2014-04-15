@@ -59,7 +59,12 @@ function promptForSearch() {
     else if (response == "f") {
       var tickets = require('./tickets.json');
       if (tickets) {
-        promptForAction(tickets);
+        require('./commands/ticket_find').loadTicketsFromArray(tickets).then(function(tickets) {
+          console.log('Found a total of ' + tickets.length + ' tickets.');
+          promptForAction(tickets);
+        }, function (error) {
+          console.error(error);
+        });
       } else {
         console.log('Failed to load file.');
         promptForSearch();
